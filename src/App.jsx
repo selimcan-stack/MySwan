@@ -82,8 +82,9 @@ const DEFAULT_CARDS = [
   { id: 4, icon: "⚠️", label: "ÖNEMLİ NOT", value: "", prompt: "Unutmaması gereken bir şey?", toast: "Not edildi! Artık hiçbir detayı kaçırmayacaksın. ⚠️" },
   { id: 5, icon: "🍮", label: "TATLI", value: "", prompt: "Hangi tatlıya bayılır?", toast: "Tatlı krizlerinde artık hazırsın! 🍮" },
   { id: 6, icon: "🩸", label: "KAN GRUBU", value: "", prompt: "Kan grubunu biliyor musun?", toast: "Bunu kaydettim, umarım hiç ihtiyacımız olmaz! ❤️" },
-  { id: 7, icon: "🥗", label: "YEMEK", value: "", prompt: "En sevdiği yemeği biliyor musun?", toast: "Acıktığınızda ne sipariş edeceğimizi biliyorum. 🍕" },
-  { id: 8, icon: "🎵", label: "SANATÇI", value: "", prompt: "En çok kimi dinler?", toast: "Playlist'iniz artık daha anlamlı olacak. 🎵" },
+  { id: 7, icon: "✨", label: "BURÇ", value: "", prompt: "Burcu ve yükselenini biliyor musun?", toast: "Astroloji severler için önemli bir detay! ✨" },
+  { id: 8, icon: "🥗", label: "YEMEK", value: "", prompt: "En sevdiği yemeği biliyor musun?", toast: "Acıktığınızda ne sipariş edeceğimizi biliyorum. 🍕" },
+  { id: 9, icon: "🎵", label: "SANATÇI", value: "", prompt: "En çok kimi dinler?", toast: "Playlist'iniz artık daha anlamlı olacak. 🎵" },
 ];
 
 const MONTHS = ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"];
