@@ -83,7 +83,7 @@ const DEFAULT_CARDS = [
   { id: 5, icon: "🍮", label: "TATLI", value: "", prompt: "Hangi tatlıya bayılır?", toast: "Tatlı krizlerinde artık hazırsın! 🍮" },
   { id: 6, icon: "🩸", label: "KAN GRUBU", value: "", prompt: "Kan grubunu biliyor musun?", toast: "Bunu kaydettim, umarım hiç ihtiyacımız olmaz! ❤️" },
   { id: 7, icon: "👟", label: "AYAKKABI NUMARASI", value: "", prompt: "Ayakkabı numarası kaç?", toast: "Sürpriz hediye için harika bir detay! 👟" },
-  { id: 8, icon: "✨", label: "BURÇ", value: "", prompt: "Burcu ve yükselenini biliyor musun?", toast: "Astroloji severler için önemli bir detay! ✨" },
+  { id: 8, icon: "✨", label: "BURÇ", value: "", prompt: "Burcunu biliyor musun?", toast: "Astroloji severler için önemli bir detay! ✨" },
   { id: 9, icon: "🥗", label: "YEMEK", value: "", prompt: "En sevdiği yemeği biliyor musun?", toast: "Acıktığınızda ne sipariş edeceğimizi biliyorum. 🍕" },
   { id: 10, icon: "🎵", label: "SANATÇI", value: "", prompt: "En çok kimi dinler?", toast: "Playlist'iniz artık daha anlamlı olacak. 🎵" },
 ];
@@ -205,7 +205,7 @@ function CustomDatePicker({ value, onChange, T }) {
             animation: "dateSheetUp 0.3s cubic-bezier(0.22, 1, 0.36, 1)",
             paddingBottom: 24, maxHeight: "75vh", overflowY: "auto", WebkitOverflowScrolling: "touch"
           }} onClick={e => e.stopPropagation()}>
-            <style>{`@keyframes dateSheetUp{from{transform:translateY(100%)}to{transform:translateY(0)}}`}</style>
+            <style>{`@keyframes dateSheetUp{from{transform:translateX(-50%) translateY(100%)}to{transform:translateX(-50%) translateY(0)}}`}</style>
 
             {/* Handle bar */}
             <div style={{ display: "flex", justifyContent: "center", padding: "12px 0 8px" }}>
@@ -1124,18 +1124,6 @@ function CardsTab({ partner, setPartner, bucketList, setBucketList, gifts, setGi
       <h2 style={{ fontSize: 16, color: T.text, fontWeight: 700, fontFamily: F.heading, marginBottom: 6 }}>🎯 Birlikte Yapılacaklar</h2>
       <p style={{ fontSize: 12, color: T.textMuted, marginBottom: 14 }}>Hayallerinizi listeleyin, gerçekleştirdikçe işaretleyin</p>
 
-      {total > 0 && (
-        <div style={{ marginBottom: 16 }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
-            <span style={{ fontSize: 12, fontWeight: 700, color: T.labelColor }}>{done}/{total} tamamlandı</span>
-            <span style={{ fontSize: 12, fontWeight: 700, color: T.accent }}>{Math.round(done / total * 100)}%</span>
-          </div>
-          <div style={{ height: 6, borderRadius: 3, background: T.inputBorder, overflow: "hidden" }}>
-            <div style={{ height: "100%", borderRadius: 3, background: T.accentGrad, width: `${done / total * 100}%`, transition: "width 0.5s ease" }} />
-          </div>
-        </div>
-      )}
-
       {/* Oval input */}
       <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
         <input value={newItem} onChange={e => setNewItem(e.target.value)} placeholder="Birlikte ne yapmak istersiniz?"
@@ -1269,18 +1257,6 @@ function BucketListTab({ bucketList, setBucketList, T }) {
     <div style={{ padding: "20px 16px" }}>
       <h1 style={{ textAlign: "center", fontSize: 20, fontWeight: 600, fontFamily: F.heading, color: T.text, marginBottom: 6 }}>Birlikte Yapılacaklar</h1>
       <p style={{ textAlign: "center", fontSize: 13, color: T.textMuted, marginBottom: 20 }}>Hayallerinizi listeleyin, gerçekleştirdikçe işaretleyin 🎯</p>
-
-      {total > 0 && (
-        <div style={{ marginBottom: 20 }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
-            <span style={{ fontSize: 12, fontWeight: 700, color: T.labelColor }}>{done}/{total} tamamlandı</span>
-            <span style={{ fontSize: 12, fontWeight: 700, color: T.accent }}>{Math.round(done / total * 100)}%</span>
-          </div>
-          <div style={{ height: 8, borderRadius: 4, background: T.inputBorder, overflow: "hidden" }}>
-            <div style={{ height: "100%", borderRadius: 4, background: T.accentGrad, width: `${done / total * 100}%`, transition: "width 0.5s ease" }} />
-          </div>
-        </div>
-      )}
 
       <div style={{ display: "flex", gap: 8, marginBottom: 20 }}>
         <input value={newItem} onChange={e => setNewItem(e.target.value)} placeholder="Örn: Paris'e gitmek" onKeyDown={e => e.key === "Enter" && addItem()} style={{ ...IS, flex: 1 }} />
