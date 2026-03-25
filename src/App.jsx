@@ -168,23 +168,22 @@ function CustomDatePicker({ value, onChange, T }) {
     <div ref={ref} style={{ position: "relative", width: "100%" }}>
       {/* Modern rounded input */}
       <div style={{
-        display: "flex", alignItems: "center",
+        display: "flex", alignItems: "stretch",
         border: `2px solid ${isOpen ? T.accent : T.inputBorder}`,
-        borderRadius: 20, background: T.inputBg, transition: "all 0.3s",
-        overflow: "hidden",
+        borderRadius: 16, background: T.inputBg, transition: "all 0.3s",
         boxShadow: isOpen ? `0 4px 20px ${T.accent}20` : `0 2px 12px ${T.accent}08`,
       }}>
         <input type="text" inputMode="numeric" value={textValue} onChange={handleTextChange}
           placeholder="gg.aa.yyyy"
           onFocus={() => {}}
-          style={{ flex: 1, padding: "18px 22px", border: "none", outline: "none", background: "transparent",
-            fontSize: 17, fontFamily: F.body, fontWeight: 500, color: T.text, textAlign: "left", boxSizing: "border-box",
-            letterSpacing: "0.5px" }} />
+          style={{ flex: 1, padding: "16px 18px", border: "none", outline: "none", background: "transparent",
+            fontSize: 16, fontFamily: F.body, fontWeight: 500, color: T.text, textAlign: "left", boxSizing: "border-box",
+            letterSpacing: "0.5px", minWidth: 0 }} />
         <button onClick={() => { setIsOpen(o => !o); if (parsed) { setViewYear(parsed.getFullYear()); setViewMonth(parsed.getMonth()); } }}
-          style={{ width: 56, height: 56, border: "none", cursor: "pointer", flexShrink: 0,
-            background: isOpen ? T.accentGrad : "transparent", display: "flex", alignItems: "center", justifyContent: "center",
-            borderLeft: `1.5px solid ${T.inputBorder}`, transition: "all 0.3s", borderRadius: "0 18px 18px 0" }}>
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          style={{ width: 52, border: "none", cursor: "pointer", flexShrink: 0,
+            background: isOpen ? T.accentGrad : T.softBg, display: "flex", alignItems: "center", justifyContent: "center",
+            transition: "all 0.3s", borderRadius: "0 14px 14px 0", borderLeft: `1px solid ${T.inputBorder}` }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
             <rect x="3" y="4" width="18" height="18" rx="4" stroke={isOpen ? "white" : T.accent} strokeWidth="1.8" fill="none"/>
             <path d="M3 10h18" stroke={isOpen ? "white" : T.accent} strokeWidth="1.8"/>
             <circle cx="8" cy="15" r="1.2" fill={isOpen ? "white" : T.accent}/><circle cx="12" cy="15" r="1.2" fill={isOpen ? "white" : T.accent} opacity="0.4"/><circle cx="16" cy="15" r="1.2" fill={isOpen ? "white" : T.accent} opacity="0.4"/>
