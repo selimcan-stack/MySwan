@@ -3,11 +3,11 @@ import { useState, useEffect, useRef } from "react";
 // ── Google Fonts & Font Presets ─────────────────────────────
 const FONT_PRESETS = [
   { id: "modern", name: "Modern", sample: "Aa", import: "Montserrat:wght@400;500;600;700;800", display: "'Playfair Display', Georgia, serif", heading: "'Montserrat', sans-serif", body: "'Montserrat', sans-serif" },
-  { id: "elegant", name: "Zarif", sample: "Aa", import: "Cormorant+Garamond:wght@400;500;600;700&family=Lato:wght@400;700", display: "'Cormorant Garamond', Georgia, serif", heading: "'Cormorant Garamond', serif", body: "'Lato', sans-serif" },
-  { id: "playful", name: "Eğlenceli", sample: "Aa", import: "Quicksand:wght@400;500;600;700&family=Pacifico", display: "'Pacifico', cursive", heading: "'Quicksand', sans-serif", body: "'Quicksand', sans-serif" },
-  { id: "minimal", name: "Minimal", sample: "Aa", import: "DM+Sans:wght@400;500;600;700&family=DM+Serif+Display", display: "'DM Serif Display', Georgia, serif", heading: "'DM Sans', sans-serif", body: "'DM Sans', sans-serif" },
-  { id: "classic", name: "Klasik", sample: "Aa", import: "Merriweather:wght@400;700;900&family=Source+Sans+3:wght@400;600;700", display: "'Merriweather', Georgia, serif", heading: "'Source Sans 3', sans-serif", body: "'Source Sans 3', sans-serif" },
-  { id: "soft", name: "Yumuşak", sample: "Aa", import: "Nunito:wght@400;500;600;700;800&family=Abril+Fatface", display: "'Abril Fatface', Georgia, serif", heading: "'Nunito', sans-serif", body: "'Nunito', sans-serif" },
+  { id: "elegant", name: "Estetik", sample: "Aa", import: "Cormorant+Garamond:wght@400;500;600;700&family=Lato:wght@400;700", display: "'Cormorant Garamond', Georgia, serif", heading: "'Cormorant Garamond', serif", body: "'Lato', sans-serif" },
+  { id: "playful", name: "Enerjik", sample: "Aa", import: "Quicksand:wght@400;500;600;700&family=Pacifico", display: "'Pacifico', cursive", heading: "'Quicksand', sans-serif", body: "'Quicksand', sans-serif" },
+  { id: "minimal", name: "Yalın", sample: "Aa", import: "DM+Sans:wght@400;500;600;700&family=DM+Serif+Display", display: "'DM Serif Display', Georgia, serif", heading: "'DM Sans', sans-serif", body: "'DM Sans', sans-serif" },
+  { id: "classic", name: "Kurumsal", sample: "Aa", import: "Merriweather:wght@400;700;900&family=Source+Sans+3:wght@400;600;700", display: "'Merriweather', Georgia, serif", heading: "'Source Sans 3', sans-serif", body: "'Source Sans 3', sans-serif" },
+  { id: "soft", name: "Akıcı", sample: "Aa", import: "Nunito:wght@400;500;600;700;800&family=Abril+Fatface", display: "'Abril Fatface', Georgia, serif", heading: "'Nunito', sans-serif", body: "'Nunito', sans-serif" },
 ];
 
 // Mutable font ref — updated by App on each render
@@ -82,8 +82,10 @@ const DEFAULT_CARDS = [
   { id: 4, icon: "⚠️", label: "ÖNEMLİ NOT", value: "", prompt: "Unutmaması gereken bir şey?", toast: "Not edildi! Artık hiçbir detayı kaçırmayacaksın. ⚠️" },
   { id: 5, icon: "🍮", label: "TATLI", value: "", prompt: "Hangi tatlıya bayılır?", toast: "Tatlı krizlerinde artık hazırsın! 🍮" },
   { id: 6, icon: "🩸", label: "KAN GRUBU", value: "", prompt: "Kan grubunu biliyor musun?", toast: "Bunu kaydettim, umarım hiç ihtiyacımız olmaz! ❤️" },
-  { id: 7, icon: "🥗", label: "YEMEK", value: "", prompt: "En sevdiği yemeği biliyor musun?", toast: "Acıktığınızda ne sipariş edeceğimizi biliyorum. 🍕" },
-  { id: 8, icon: "🎵", label: "SANATÇI", value: "", prompt: "En çok kimi dinler?", toast: "Playlist'iniz artık daha anlamlı olacak. 🎵" },
+  { id: 7, icon: "👟", label: "AYAKKABI NUMARASI", value: "", prompt: "Ayakkabı numarası kaç?", toast: "Sürpriz hediye için harika bir detay! 👟" },
+  { id: 8, icon: "✨", label: "BURÇ", value: "", prompt: "Burcu ve yükselenini biliyor musun?", toast: "Astroloji severler için önemli bir detay! ✨" },
+  { id: 9, icon: "🥗", label: "YEMEK", value: "", prompt: "En sevdiği yemeği biliyor musun?", toast: "Acıktığınızda ne sipariş edeceğimizi biliyorum. 🍕" },
+  { id: 10, icon: "🎵", label: "SANATÇI", value: "", prompt: "En çok kimi dinler?", toast: "Playlist'iniz artık daha anlamlı olacak. 🎵" },
 ];
 
 const MONTHS = ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"];
@@ -262,9 +264,9 @@ function OnboardingScreen({ onFinish, T }) {
   const IS = mkInput(T); const BS = mkBtn(T);
 
   const steps = [
-    { emoji: "💕", title: "Hoş Geldiniz!", subtitle: "Sevgilinizle birlikte geçirdiğiniz her anı burada saklayın.",
-      content: <p style={{ color: T.textSec, fontSize: 14, lineHeight: 1.5, textAlign: "center", margin: 0 }}>Başlamadan önce sevgilinizle ilgili birkaç bilgi alalım; sadece birkaç adımda hazırsınız!</p>, canNext: true },
-    { emoji: "💑", title: "Seni Tanıyalım", subtitle: "Her şeyi senin için özelleştirelim.",
+    { emoji: "💌", title: "Hoş Geldiniz!", subtitle: "Sevgilinizle birlikte geçirdiğiniz her anı burada saklayın.",
+      content: <p style={{ color: T.textSec, fontSize: 14, lineHeight: 1.5, textAlign: "center", margin: 0 }}>Onun dünyasına ufak bir pencere açalım. Birkaç küçük detayla unutulmaz bir deneyime hazırsınız!</p>, canNext: true },
+    { emoji: "👫🏻", title: "Seni Tanıyalım", subtitle: "Her şeyi senin için özelleştirelim.",
       content: (
         <div style={{ display: "flex", flexDirection: "column", gap: 14, width: "100%" }}>
           {[{ value: "female", gradient: "linear-gradient(135deg, #f093fb, #e91e8c)", label: "Kadın", accent: "#e91e8c",
@@ -301,7 +303,7 @@ function OnboardingScreen({ onFinish, T }) {
           })}
         </div>
       ), canNext: gender !== "" },
-    { emoji: isMale ? "🌸" : "💙", title: "Sevgilinizin Adı", subtitle: "Ona nasıl hitap ediyorsunuz?",
+    { emoji: isMale ? "🪷" : "💎", title: "Sevgilinizin Adı", subtitle: "Ona nasıl hitap ediyorsunuz?",
       content: <input placeholder={isMale ? "Örn: Ayşe Yıldız" : "Örn: Ahmet Yıldız"} value={partnerName} onChange={e => setPartnerName(e.target.value)} style={{ ...IS, textAlign: "center", fontSize: 18, padding: "18px 20px", fontWeight: 500 }} />, canNext: partnerName.trim().length > 0 },
     { emoji: "📅", title: "Mutluluğunuz Ne Zaman Başladı?", subtitle: "Bu tarihten itibaren birlikte geçen günler sayılacak.",
       content: <CustomDatePicker value={startDate} onChange={v => setStartDate(v)} T={T} />, canNext: startDate.length > 0 },
@@ -407,12 +409,12 @@ function OnboardingScreen({ onFinish, T }) {
 
 // ── EmojiPicker ────────────────────────────────────────────
 const EMOJI_CATEGORIES = [
-  { label: "Sevgi 💕", emojis: ["❤️","🧡","💛","💚","💙","💜","🖤","🤍","💗","💓","💞","💕","💘","💝","💖","💟","♥️","❣️","😍","🥰","😘","💏","💑","👫","🌹","💐","🌸","🌺","🌻","🌼","🌷","💒","🎀","🎁","🎊","🎉","🥂","🍾","✨","🌟","⭐","💫","🌙"] },
-  { label: "Kutlama 🎉", emojis: ["🎂","🎁","🎊","🎉","🎈","🎀","🥳","🍰","🧁","🥂","🍾","🎆","🎇","🎃","🎄","🎭","🎨","🎬","🎤","🎧","🎹","🎸","🎯","🎮","🎲"] },
-  { label: "Seyahat ✈️", emojis: ["✈️","🚀","🚗","🏖️","🏔️","🌍","🗺️","🏕️","🏝️","🏛️","🗼","🗽","⛩️","🌅","🌄","🌇","🌆","🌃","🌉","🎢","🎡","🚢","🛳️","🚂","🚁"] },
-  { label: "Yemek 🍕", emojis: ["🍕","🍔","🌮","🍳","🥘","🍲","🥗","🍱","🍜","🍝","🍣","🍦","🍩","🍪","🎂","🍰","🧁","🍫","🍬","🍭","🍮","☕","🍵","🍷","🥂","🥤","🧋"] },
-  { label: "Doğa 🌿", emojis: ["🌿","🍀","🌱","🌲","🌳","🌴","🍃","🍂","🍁","💐","🌹","🌸","🌼","🌻","🌈","☀️","🌙","⭐","❄️","🌊","🔥","🦋","🐦","🌺","🍄"] },
-  { label: "Semboller ⭐", emojis: ["⭐","🌟","💫","✨","🔥","💥","❄️","🌈","☀️","🌙","⚡","🎵","🎶","💡","🔔","💎","🎯","🏹","🧿","♾️","✅","❤️‍🔥","🫶","🤞","🤙"] },
+  { label: "Sevgi 💞", emojis: ["❤️","🧡","💛","💚","💙","💜","🖤","🤍","💗","💓","💞","💕","💘","💝","💖","♥️","❣️","💏","👫","🌹"] },
+  { label: "Kutlama 🎉", emojis: ["🎉","🎊","🥂","🍾","🎂","🎁","🎈","✨","🌟","💃","🕺","🪩"] },
+  { label: "Seyahat ✈️", emojis: ["✈️","🌍","🌎","🌏","🧳","🏝️","🏖️","🏔️","🏕️","🚗","🚀","📍"] },
+  { label: "Yemek 🍽️", emojis: ["🍽️","🍕","🍔","🍟","🍣","🍩","🍰","🍓","🥑","☕","🍹","🥂"] },
+  { label: "Doğa 🌿", emojis: ["🌿","🍀","🌱","🌸","🌼","🌻","🌳","🌲","🌊","🔥","🌙","☀️"] },
+  { label: "Semboller ✨", emojis: ["✨","⭐","🌟","⚡","💫","🔥","💎","🧿","✔️","❗","➜","🎯"] },
 ];
 
 function EmojiPicker({ selected, onSelect, T }) {
@@ -533,7 +535,7 @@ function HomeTab({ partnerName, days, events, showAll, setShowAll, heartAnim, on
           transform: glowPunch ? "scale(1.08)" : "scale(1)",
           transition: "all 0.3s ease-out"
         }}>{displayDays.toLocaleString("tr-TR")}</div>
-        <p style={{ color: T.labelColor, fontSize: 13, marginTop: 8 }}>Gün boyunca her anı seninle ✨</p>
+        <p style={{ color: T.labelColor, fontSize: 13, marginTop: 8 }}>Zaman seninle anlam kazanıyor ✨</p>
       </div>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
         <h2 style={{ fontSize: 17, fontWeight: 600, fontFamily: F.heading, color: T.text, margin: 0 }}>Yaklaşan Günler</h2>
