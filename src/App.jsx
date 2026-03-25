@@ -414,7 +414,7 @@ const EMOJI_CATEGORIES = [
   { label: "Seyahat ✈️", emojis: ["✈️","🌍","🌎","🌏","🧳","🏝️","🏖️","🏔️","🏕️","🚗","🚀","📍"] },
   { label: "Yemek 🍽️", emojis: ["🍽️","🍕","🍔","🍟","🍣","🍩","🍰","🍓","🥑","☕","🍹","🥂"] },
   { label: "Doğa 🌿", emojis: ["🌿","🍀","🌱","🌸","🌼","🌻","🌳","🌲","🌊","🔥","🌙","☀️"] },
-  { label: "Semboller ✨", emojis: ["✨","⭐","🌟","⚡","💫","🔥","💎","🧿","✔️","❗","➜","🎯"] },
+  { label: "Semboller ⭐", emojis: ["✨","⭐","🌟","⚡","💫","🔥","💎","🧿","✔️","❗","➜","🎯"]  },
 ];
 
 function EmojiPicker({ selected, onSelect, T }) {
@@ -535,7 +535,7 @@ function HomeTab({ partnerName, days, events, showAll, setShowAll, heartAnim, on
           transform: glowPunch ? "scale(1.08)" : "scale(1)",
           transition: "all 0.3s ease-out"
         }}>{displayDays.toLocaleString("tr-TR")}</div>
-        <p style={{ color: T.labelColor, fontSize: 13, marginTop: 8 }}>Gün boyunca her anı seninle ✨</p>
+        <p style={{ color: T.labelColor, fontSize: 13, marginTop: 8 }}>Zaman seninle anlam kazanıyor ✨</p>
       </div>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
         <h2 style={{ fontSize: 17, fontWeight: 600, fontFamily: F.heading, color: T.text, margin: 0 }}>Yaklaşan Günler</h2>
@@ -1645,20 +1645,10 @@ function WelcomeParticles({ T }) {
   );
 }
 
-// ── SVG Logo Component ─────────────────────────────────────
-function AppLogo({ size = 100, accent1 = "#e91e8c", accent2 = "#ff6b9d", accent3 = "#d6006e" }) {
-  const s = size / 100;
+// ── Logo Component ─────────────────────────────────────────
+function AppLogo({ size = 100 }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 100 100" fill="none">
-      {/* Left figure */}
-      <circle cx={32} cy={22} r={13 * s + 5} fill={accent1}/>
-      <path d={`M32,${28 + s} C28,${42} 30,${56} 36,${68} C42,${80} 46,${80} 50,${72}`} fill={accent1}/>
-      {/* Right figure */}
-      <circle cx={68} cy={22} r={13 * s + 5} fill={accent2}/>
-      <path d={`M68,${28 + s} C72,${42} 70,${56} 64,${68} C58,${80} 54,${80} 50,${72}`} fill={accent2}/>
-      {/* Heart at connection */}
-      <path d="M50,66 C47,60 42,60 42,64 C42,67 46,70 50,74 C54,70 58,67 58,64 C58,60 53,60 50,66Z" fill={accent3}/>
-    </svg>
+    <img src="/icons/logo.png" alt="MySwan" width={size} height={size} style={{ objectFit: "contain" }} />
   );
 }
 
@@ -1937,7 +1927,7 @@ export default function App() {
         const years = now.getFullYear() - sd.getFullYear();
         setCelebration({
           type: "anniversary",
-          emoji: "💖",
+          emoji: "💕",
           title: `${years}. Yıl Dönümünüz Kutlu Olsun!`,
           message: `Bugün ${partnerName} ile tam ${years} yıl oldu! Birlikte geçirdiğiniz her an çok değerli. Nice mutlu yıllara!`
         });
@@ -2181,7 +2171,7 @@ export default function App() {
               background: T.card, display: "flex", alignItems: "center", justifyContent: "center",
               boxShadow: `0 8px 28px ${T.accent}20`, border: `1px solid ${T.cardBorder}`
             }}>
-              <AppLogo size={60} accent1={T.accent} accent2={palette.accent2} accent3={palette.accent} />
+              <AppLogo size={60} />
             </div>
             <h3 style={{ fontSize: 24, fontWeight: 800, fontFamily: F.heading, color: T.accent, margin: "0 0 4px" }}>MySwan</h3>
             <p style={{ fontSize: 12, color: T.textMuted, margin: "0 0 16px" }}>Versiyon 1.0.0</p>
