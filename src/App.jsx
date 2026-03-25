@@ -1937,7 +1937,7 @@ export default function App() {
         const years = now.getFullYear() - sd.getFullYear();
         setCelebration({
           type: "anniversary",
-          emoji: "💕",
+          emoji: "💖",
           title: `${years}. Yıl Dönümünüz Kutlu Olsun!`,
           message: `Bugün ${partnerName} ile tam ${years} yıl oldu! Birlikte geçirdiğiniz her an çok değerli. Nice mutlu yıllara!`
         });
