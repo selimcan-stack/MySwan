@@ -3,11 +3,11 @@ import { useState, useEffect, useRef } from "react";
 // ── Google Fonts & Font Presets ─────────────────────────────
 const FONT_PRESETS = [
   { id: "modern", name: "Modern", sample: "Aa", import: "Montserrat:wght@400;500;600;700;800", display: "'Playfair Display', Georgia, serif", heading: "'Montserrat', sans-serif", body: "'Montserrat', sans-serif" },
-  { id: "elegant", name: "Zarif", sample: "Aa", import: "Cormorant+Garamond:wght@400;500;600;700&family=Lato:wght@400;700", display: "'Cormorant Garamond', Georgia, serif", heading: "'Cormorant Garamond', serif", body: "'Lato', sans-serif" },
-  { id: "playful", name: "Eğlenceli", sample: "Aa", import: "Quicksand:wght@400;500;600;700&family=Pacifico", display: "'Pacifico', cursive", heading: "'Quicksand', sans-serif", body: "'Quicksand', sans-serif" },
-  { id: "minimal", name: "Minimal", sample: "Aa", import: "DM+Sans:wght@400;500;600;700&family=DM+Serif+Display", display: "'DM Serif Display', Georgia, serif", heading: "'DM Sans', sans-serif", body: "'DM Sans', sans-serif" },
-  { id: "classic", name: "Klasik", sample: "Aa", import: "Merriweather:wght@400;700;900&family=Source+Sans+3:wght@400;600;700", display: "'Merriweather', Georgia, serif", heading: "'Source Sans 3', sans-serif", body: "'Source Sans 3', sans-serif" },
-  { id: "soft", name: "Yumuşak", sample: "Aa", import: "Nunito:wght@400;500;600;700;800&family=Abril+Fatface", display: "'Abril Fatface', Georgia, serif", heading: "'Nunito', sans-serif", body: "'Nunito', sans-serif" },
+  { id: "elegant", name: "Estetik", sample: "Aa", import: "Cormorant+Garamond:wght@400;500;600;700&family=Lato:wght@400;700", display: "'Cormorant Garamond', Georgia, serif", heading: "'Cormorant Garamond', serif", body: "'Lato', sans-serif" },
+  { id: "playful", name: "Enerjik", sample: "Aa", import: "Quicksand:wght@400;500;600;700&family=Pacifico", display: "'Pacifico', cursive", heading: "'Quicksand', sans-serif", body: "'Quicksand', sans-serif" },
+  { id: "minimal", name: "Yalın", sample: "Aa", import: "DM+Sans:wght@400;500;600;700&family=DM+Serif+Display", display: "'DM Serif Display', Georgia, serif", heading: "'DM Sans', sans-serif", body: "'DM Sans', sans-serif" },
+  { id: "classic", name: "Kurumsal", sample: "Aa", import: "Merriweather:wght@400;700;900&family=Source+Sans+3:wght@400;600;700", display: "'Merriweather', Georgia, serif", heading: "'Source Sans 3', sans-serif", body: "'Source Sans 3', sans-serif" },
+  { id: "soft", name: "Akıcı", sample: "Aa", import: "Nunito:wght@400;500;600;700;800&family=Abril+Fatface", display: "'Abril Fatface', Georgia, serif", heading: "'Nunito', sans-serif", body: "'Nunito', sans-serif" },
 ];
 
 // Mutable font ref — updated by App on each render
