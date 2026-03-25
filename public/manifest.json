@@ -1,0 +1,40 @@
+{
+  "name": "MySwan - Sevgilinizle Her Anı Saklayın",
+  "short_name": "MySwan",
+  "description": "Sevgilinizle birlikte geçirdiğiniz her anı, her detayı ve her hayali saklamak için tasarlandı.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#fff0f5",
+  "theme_color": "#e91e8c",
+  "orientation": "portrait",
+  "lang": "tr",
+  "categories": ["lifestyle", "social"],
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "prefer_related_applications": false
+}
