@@ -519,7 +519,7 @@ function HomeTab({ partnerName, days, events, showAll, setShowAll, heartAnim, on
           transform: glowPunch ? "scale(1.08)" : "scale(1)",
           transition: "all 0.3s ease-out"
         }}>{displayDays.toLocaleString("tr-TR")}</div>
-        <p style={{ color: T.labelColor, fontSize: 13, marginTop: 8 }}>Gün boyunca her anı seninle ✨</p>
+        <p style={{ color: T.labelColor, fontSize: 13, marginTop: 8 }}>Zaman seninle anlam kazanıyor ✨</p>
       </div>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
         <h2 style={{ fontSize: 17, fontWeight: 600, fontFamily: F.heading, color: T.text, margin: 0 }}>Yaklaşan Günler</h2>
