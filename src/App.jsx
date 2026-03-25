@@ -262,7 +262,7 @@ function OnboardingScreen({ onFinish, T }) {
   const IS = mkInput(T); const BS = mkBtn(T);
 
   const steps = [
-    { emoji: "💕", title: "Hoş Geldiniz!", subtitle: "Sevgilinizle birlikte geçirdiğiniz her anı burada saklayın.",
+    { emoji: "💌", title: "Hoş Geldiniz!", subtitle: "Sevgilinizle birlikte geçirdiğiniz her anı burada saklayın.",
       content: <p style={{ color: T.textSec, fontSize: 14, lineHeight: 1.5, textAlign: "center", margin: 0 }}>Onun dünyasına ufak bir pencere açalım. Birkaç küçük detayla unutulmaz bir deneyime hazırsınız.</p>, canNext: true },
     { emoji: "💑", title: "Seni Tanıyalım", subtitle: "Her şeyi senin için özelleştirelim.",
       content: (
