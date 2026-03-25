@@ -301,7 +301,7 @@ function OnboardingScreen({ onFinish, T }) {
           })}
         </div>
       ), canNext: gender !== "" },
-    { emoji: isMale ? "🌸" : "💙", title: "Sevgilinizin Adı", subtitle: "Ona nasıl hitap ediyorsunuz?",
+    { emoji: isMale ? "🪷" : "💎", title: "Sevgilinizin Adı", subtitle: "Ona nasıl hitap ediyorsunuz?",
       content: <input placeholder={isMale ? "Örn: Ayşe Yıldız" : "Örn: Ahmet Yıldız"} value={partnerName} onChange={e => setPartnerName(e.target.value)} style={{ ...IS, textAlign: "center", fontSize: 18, padding: "18px 20px", fontWeight: 500 }} />, canNext: partnerName.trim().length > 0 },
     { emoji: "📅", title: "Mutluluğunuz Ne Zaman Başladı?", subtitle: "Bu tarihten itibaren birlikte geçen günler sayılacak.",
       content: <CustomDatePicker value={startDate} onChange={v => setStartDate(v)} T={T} />, canNext: startDate.length > 0 },
