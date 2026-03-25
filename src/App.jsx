@@ -198,10 +198,11 @@ function CustomDatePicker({ value, onChange, T }) {
         <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.35)", zIndex: 250, display: "flex", alignItems: "flex-end", justifyContent: "center", backdropFilter: "blur(4px)" }}
           onClick={() => setIsOpen(false)}>
           <div style={{
+            position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)",
             background: T.card, borderRadius: "28px 28px 0 0", width: "100%", maxWidth: 430,
             boxShadow: `0 -12px 48px rgba(0,0,0,0.15)`,
             animation: "dateSheetUp 0.3s cubic-bezier(0.22, 1, 0.36, 1)",
-            paddingBottom: 24
+            paddingBottom: 24, maxHeight: "75vh", overflowY: "auto", WebkitOverflowScrolling: "touch"
           }} onClick={e => e.stopPropagation()}>
             <style>{`@keyframes dateSheetUp{from{transform:translateY(100%)}to{transform:translateY(0)}}`}</style>
 
@@ -262,8 +263,8 @@ function OnboardingScreen({ onFinish, T }) {
   const IS = mkInput(T); const BS = mkBtn(T);
 
   const steps = [
-    { emoji: "💌", title: "Hoş Geldiniz!", subtitle: "Sevgilinizle birlikte geçirdiğiniz her anı burada saklayın.",
-      content: <p style={{ color: T.textSec, fontSize: 14, lineHeight: 1.5, textAlign: "center", margin: 0 }}>Onun dünyasına ufak bir pencere açalım. Birkaç küçük detayla unutulmaz bir deneyime hazırsınız.</p>, canNext: true },
+    { emoji: "💕", title: "Hoş Geldiniz!", subtitle: "Sevgilinizle birlikte geçirdiğiniz her anı burada saklayın.",
+      content: <p style={{ color: T.textSec, fontSize: 14, lineHeight: 1.5, textAlign: "center", margin: 0 }}>Başlamadan önce sevgilinizle ilgili birkaç bilgi alalım; sadece birkaç adımda hazırsınız!</p>, canNext: true },
     { emoji: "💑", title: "Seni Tanıyalım", subtitle: "Her şeyi senin için özelleştirelim.",
       content: (
         <div style={{ display: "flex", flexDirection: "column", gap: 14, width: "100%" }}>
@@ -301,7 +302,7 @@ function OnboardingScreen({ onFinish, T }) {
           })}
         </div>
       ), canNext: gender !== "" },
-    { emoji: isMale ? "🪷" : "💎", title: "Sevgilinizin Adı", subtitle: "Ona nasıl hitap ediyorsunuz?",
+    { emoji: isMale ? "🌸" : "💙", title: "Sevgilinizin Adı", subtitle: "Ona nasıl hitap ediyorsunuz?",
       content: <input placeholder={isMale ? "Örn: Ayşe Yıldız" : "Örn: Ahmet Yıldız"} value={partnerName} onChange={e => setPartnerName(e.target.value)} style={{ ...IS, textAlign: "center", fontSize: 18, padding: "18px 20px", fontWeight: 500 }} />, canNext: partnerName.trim().length > 0 },
     { emoji: "📅", title: "Mutluluğunuz Ne Zaman Başladı?", subtitle: "Bu tarihten itibaren birlikte geçen günler sayılacak.",
       content: <CustomDatePicker value={startDate} onChange={v => setStartDate(v)} T={T} />, canNext: startDate.length > 0 },
@@ -407,45 +408,59 @@ function OnboardingScreen({ onFinish, T }) {
 
 // ── EmojiPicker ────────────────────────────────────────────
 const EMOJI_CATEGORIES = [
-  { label: "Sevgi 💞", emojis: ["❤️","🧡","💛","💚","💙","💜","🖤","🤍","💗","💓","💞","💕","💘","💝","💖","♥️","❣️","💏","👫","🌹"] },
-  { label: "Kutlama 🎉", emojis: ["🎉","🎊","🥂","🍾","🎂","🎁","🎈","✨","🌟","💃","🕺","🪩"] },
-  { label: "Seyahat ✈️", emojis: ["✈️","🌍","🌎","🌏","🧳","🏝️","🏖️","🏔️","🏕️","🚗","🚀","📍"] },
-  { label: "Yemek 🍽️", emojis: ["🍽️","🍕","🍔","🍟","🍣","🍩","🍰","🍓","🥑","☕","🍹","🥂"] },
-  { label: "Doğa 🌿", emojis: ["🌿","🍀","🌱","🌸","🌼","🌻","🌳","🌲","🌊","🔥","🌙","☀️"] },
-  { label: "Semboller ✨", emojis: ["✨","⭐","🌟","⚡","💫","🔥","💎","🧿","✔️","❗","➜","🎯"] },
+  { label: "Sevgi 💕", emojis: ["❤️","🧡","💛","💚","💙","💜","🖤","🤍","💗","💓","💞","💕","💘","💝","💖","💟","♥️","❣️","😍","🥰","😘","💏","💑","👫","🌹","💐","🌸","🌺","🌻","🌼","🌷","💒","🎀","🎁","🎊","🎉","🥂","🍾","✨","🌟","⭐","💫","🌙"] },
+  { label: "Kutlama 🎉", emojis: ["🎂","🎁","🎊","🎉","🎈","🎀","🥳","🍰","🧁","🥂","🍾","🎆","🎇","🎃","🎄","🎭","🎨","🎬","🎤","🎧","🎹","🎸","🎯","🎮","🎲"] },
+  { label: "Seyahat ✈️", emojis: ["✈️","🚀","🚗","🏖️","🏔️","🌍","🗺️","🏕️","🏝️","🏛️","🗼","🗽","⛩️","🌅","🌄","🌇","🌆","🌃","🌉","🎢","🎡","🚢","🛳️","🚂","🚁"] },
+  { label: "Yemek 🍕", emojis: ["🍕","🍔","🌮","🍳","🥘","🍲","🥗","🍱","🍜","🍝","🍣","🍦","🍩","🍪","🎂","🍰","🧁","🍫","🍬","🍭","🍮","☕","🍵","🍷","🥂","🥤","🧋"] },
+  { label: "Doğa 🌿", emojis: ["🌿","🍀","🌱","🌲","🌳","🌴","🍃","🍂","🍁","💐","🌹","🌸","🌼","🌻","🌈","☀️","🌙","⭐","❄️","🌊","🔥","🦋","🐦","🌺","🍄"] },
+  { label: "Semboller ⭐", emojis: ["⭐","🌟","💫","✨","🔥","💥","❄️","🌈","☀️","🌙","⚡","🎵","🎶","💡","🔔","💎","🎯","🏹","🧿","♾️","✅","❤️‍🔥","🫶","🤞","🤙"] },
 ];
 
 function EmojiPicker({ selected, onSelect, T }) {
   const [isOpen, setIsOpen] = useState(false);
   const [openCat, setOpenCat] = useState(null);
-  const ref = useRef(null);
-  useEffect(() => { if (!isOpen) return; const h = (e) => { if (ref.current && !ref.current.contains(e.target)) setIsOpen(false); }; document.addEventListener("mousedown", h); return () => document.removeEventListener("mousedown", h); }, [isOpen]);
 
   return (
-    <div ref={ref} style={{ position: "relative" }}>
+    <div>
       <button onClick={() => setIsOpen(o => !o)} style={{ width: "100%", padding: "12px 16px", borderRadius: 12, border: `1.5px solid ${isOpen ? T.accent : T.inputBorder}`, background: T.inputBg, cursor: "pointer", fontFamily: F.body, display: "flex", alignItems: "center", gap: 12, boxSizing: "border-box", transition: "all 0.2s" }}>
         <div style={{ width: 40, height: 40, borderRadius: 12, background: T.softBg, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24, flexShrink: 0 }}>{selected}</div>
         <span style={{ flex: 1, textAlign: "left", fontSize: 14, color: T.labelColor, fontWeight: 600 }}>Emoji Seç</span>
         <span style={{ fontSize: 12, color: T.textPlaceholder, transition: "transform 0.2s", display: "inline-block", transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }}>▼</span>
       </button>
       {isOpen && (
-        <div style={{ position: "absolute", bottom: "calc(100% + 8px)", left: 0, right: 0, background: T.card, borderRadius: 18, border: `1.5px solid ${T.inputBorder}`, boxShadow: `0 -8px 40px ${T.accent}25`, zIndex: 50, overflow: "hidden", animation: "emojiUp 0.2s ease-out" }}>
-          <style>{`@keyframes emojiUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}`}</style>
-          <div style={{ padding: "12px 16px", borderBottom: `1px solid ${T.inputBorder}`, display: "flex", alignItems: "center", justifyContent: "space-between", background: T.softBg2 }}>
-            <span style={{ fontSize: 13, fontWeight: 700, color: T.accent }}>Emoji Seç</span>
-            <button onClick={() => setIsOpen(false)} style={{ background: "none", border: "none", fontSize: 16, cursor: "pointer", color: T.textMuted }}>✕</button>
-          </div>
-          <div style={{ maxHeight: 280, overflowY: "auto" }}>
-            {EMOJI_CATEGORIES.map((cat, i) => (
-              <div key={i}>
-                <button onClick={() => setOpenCat(openCat === i ? null : i)} style={{ width: "100%", padding: "10px 14px", border: "none", cursor: "pointer", background: openCat === i ? T.softBg : T.card, display: "flex", alignItems: "center", justifyContent: "space-between", fontFamily: F.body, fontSize: 13, fontWeight: 700, color: openCat === i ? T.accent : T.textSec, borderBottom: `1px solid ${T.inputBorder}` }}>
-                  <span>{cat.label}</span><span style={{ fontSize: 11, transform: openCat === i ? "rotate(180deg)" : "rotate(0deg)", display: "inline-block", transition: "transform 0.2s" }}>▼</span>
-                </button>
-                {openCat === i && <div style={{ display: "flex", flexWrap: "wrap", gap: 2, padding: 10, background: T.inputBg, borderBottom: `1px solid ${T.inputBorder}` }}>
-                  {cat.emojis.map((em, j) => <button key={j} onClick={() => { onSelect(em); setIsOpen(false); }} style={{ width: 38, height: 38, border: "none", cursor: "pointer", borderRadius: 8, background: selected === em ? T.softBg : "transparent", fontSize: 22, display: "flex", alignItems: "center", justifyContent: "center", outline: selected === em ? `2px solid ${T.accent}` : "none" }}>{em}</button>)}
-                </div>}
+        <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.35)", zIndex: 250, display: "flex", alignItems: "flex-end", justifyContent: "center", backdropFilter: "blur(4px)" }}
+          onClick={() => setIsOpen(false)}>
+          <div style={{
+            position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)",
+            background: T.card, borderRadius: "24px 24px 0 0", width: "100%", maxWidth: 430,
+            boxShadow: `0 -12px 48px rgba(0,0,0,0.15)`,
+            maxHeight: "60vh", display: "flex", flexDirection: "column",
+            animation: "emojiUp 0.3s cubic-bezier(0.22, 1, 0.36, 1)"
+          }} onClick={e => e.stopPropagation()}>
+            <style>{`@keyframes emojiUp{from{transform:translateX(-50%) translateY(100%)}to{transform:translateX(-50%) translateY(0)}}`}</style>
+            {/* Handle bar + header */}
+            <div style={{ flexShrink: 0 }}>
+              <div style={{ display: "flex", justifyContent: "center", padding: "12px 0 4px" }}>
+                <div style={{ width: 40, height: 4, borderRadius: 2, background: T.inputBorder }} />
               </div>
-            ))}
+              <div style={{ padding: "8px 16px 10px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: `1px solid ${T.inputBorder}` }}>
+                <span style={{ fontSize: 15, fontWeight: 700, fontFamily: F.heading, color: T.accent }}>Emoji Seç</span>
+                <button onClick={() => setIsOpen(false)} style={{ background: "none", border: "none", fontSize: 18, cursor: "pointer", color: T.textMuted, padding: 4 }}>✕</button>
+              </div>
+            </div>
+            {/* Scrollable emoji list */}
+            <div style={{ flex: 1, overflowY: "auto", WebkitOverflowScrolling: "touch" }}>
+              {EMOJI_CATEGORIES.map((cat, i) => (
+                <div key={i}>
+                  <button onClick={() => setOpenCat(openCat === i ? null : i)} style={{ width: "100%", padding: "12px 16px", border: "none", cursor: "pointer", background: openCat === i ? T.softBg : T.card, display: "flex", alignItems: "center", justifyContent: "space-between", fontFamily: F.body, fontSize: 14, fontWeight: 700, color: openCat === i ? T.accent : T.textSec, borderBottom: `1px solid ${T.inputBorder}` }}>
+                    <span>{cat.label}</span><span style={{ fontSize: 11, transform: openCat === i ? "rotate(180deg)" : "rotate(0deg)", display: "inline-block", transition: "transform 0.2s" }}>▼</span>
+                  </button>
+                  {openCat === i && <div style={{ display: "flex", flexWrap: "wrap", gap: 4, padding: 12, background: T.inputBg, borderBottom: `1px solid ${T.inputBorder}` }}>
+                    {cat.emojis.map((em, j) => <button key={j} onClick={() => { onSelect(em); setIsOpen(false); }} style={{ width: 42, height: 42, border: "none", cursor: "pointer", borderRadius: 10, background: selected === em ? T.softBg : "transparent", fontSize: 24, display: "flex", alignItems: "center", justifyContent: "center", outline: selected === em ? `2px solid ${T.accent}` : "none" }}>{em}</button>)}
+                  </div>}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       )}
@@ -519,7 +534,7 @@ function HomeTab({ partnerName, days, events, showAll, setShowAll, heartAnim, on
           transform: glowPunch ? "scale(1.08)" : "scale(1)",
           transition: "all 0.3s ease-out"
         }}>{displayDays.toLocaleString("tr-TR")}</div>
-        <p style={{ color: T.labelColor, fontSize: 13, marginTop: 8 }}>Zaman seninle anlam kazanıyor ✨</p>
+        <p style={{ color: T.labelColor, fontSize: 13, marginTop: 8 }}>Gün boyunca her anı seninle ✨</p>
       </div>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
         <h2 style={{ fontSize: 17, fontWeight: 600, fontFamily: F.heading, color: T.text, margin: 0 }}>Yaklaşan Günler</h2>
