@@ -307,7 +307,7 @@ function OnboardingScreen({ onFinish, T }) {
       content: <input placeholder={isMale ? "Örn: Ayşe Yıldız" : "Örn: Ahmet Yıldız"} value={partnerName} onChange={e => setPartnerName(e.target.value)} style={{ ...IS, textAlign: "center", fontSize: 18, padding: "18px 20px", fontWeight: 500 }} />, canNext: partnerName.trim().length > 0 },
     { emoji: "📅", title: "Mutluluğunuz Ne Zaman Başladı?", subtitle: "Bu tarihten itibaren birlikte geçen günler sayılacak.",
       content: <CustomDatePicker value={startDate} onChange={v => setStartDate(v)} T={T} />, canNext: startDate.length > 0 },
-    { emoji: "🎂", title: "En Özel Günü Unutmayalım", subtitle: "Yaklaşan günler listesine otomatik eklenecek.",
+    { emoji: "🎂", title: "En Özel Gün Olan Doğum Gününü Unutmayalım", subtitle: "Yaklaşan günler listesine otomatik eklenecek.",
       content: <CustomDatePicker value={birthDate} onChange={v => setBirthDate(v)} T={T} />, canNext: true },
   ];
   const cur = steps[step];
