@@ -266,7 +266,7 @@ function OnboardingScreen({ onFinish, T }) {
   const steps = [
     { emoji: "💌", title: "Hoş Geldiniz!", subtitle: "Sevgilinizle birlikte geçirdiğiniz her anı burada saklayın.",
       content: <p style={{ color: T.textSec, fontSize: 14, lineHeight: 1.5, textAlign: "center", margin: 0 }}>Onun dünyasına ufak bir pencere açalım. Birkaç küçük detayla unutulmaz bir deneyime hazırsınız!</p>, canNext: true },
-    { emoji: "👫🏻", title: "Seni Tanıyalım", subtitle: "Her şeyi senin için özelleştirelim.",
+    { emoji: "👩🏻‍❤️‍👨🏻", title: "Seni Tanıyalım", subtitle: "Her şeyi senin için özelleştirelim.",
       content: (
         <div style={{ display: "flex", flexDirection: "column", gap: 14, width: "100%" }}>
           {[{ value: "female", gradient: "linear-gradient(135deg, #f093fb, #e91e8c)", label: "Kadın", accent: "#e91e8c",
