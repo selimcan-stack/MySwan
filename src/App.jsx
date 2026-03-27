@@ -351,7 +351,7 @@ function OnboardingScreen({ onFinish, T }) {
       {/* Top content with slide animation */}
       <div key={`step-${step}-${animKey}`} style={{
         flex: 1, display: "flex", flexDirection: "column", alignItems: "center",
-        paddingTop: 60, paddingLeft: 32, paddingRight: 32, paddingBottom: 120,
+        paddingTop: 60, paddingLeft: 32, paddingRight: 32, paddingBottom: 180,
         width: "100%", boxSizing: "border-box",
         animation: `${slideDir === "right" ? "slideInRight" : "slideInLeft"} 0.4s cubic-bezier(0.22, 1, 0.36, 1) both`
       }}>
@@ -372,11 +372,11 @@ function OnboardingScreen({ onFinish, T }) {
         <div style={{ width: "100%", maxWidth: 320 }}>{cur.content}</div>
       </div>
 
-      {/* Bottom sticky button area */}
+      {/* Bottom fixed button area */}
       <div style={{
-        position: "sticky", bottom: 0, width: "100%", boxSizing: "border-box",
-        padding: "16px 32px 32px",
-        background: `linear-gradient(to top, ${T.onboardBg.includes("#1a1020") ? "#1a1020" : "#fff0f5"} 60%, transparent)`,
+        position: "fixed", bottom: 0, left: 0, right: 0, width: "100%", boxSizing: "border-box",
+        padding: "16px 32px calc(32px + env(safe-area-inset-bottom, 0px))",
+        background: `linear-gradient(to top, ${T.onboardBg.includes("#1a1020") ? "#1a1020" : "#fff0f5"} 70%, ${T.onboardBg.includes("#1a1020") ? "#1a1020" : "#fff0f5"}00)`,
         display: "flex", flexDirection: "column", alignItems: "center", zIndex: 10
       }}>
         <button disabled={!cur.canNext} onClick={goNext} style={{
@@ -415,6 +415,7 @@ const EMOJI_CATEGORIES = [
   { label: "Yemek 🍽️", emojis: ["🍽️","🍕","🍔","🍟","🍣","🍩","🍰","🍓","🥑","☕","🍹","🥂"] },
   { label: "Doğa 🌿", emojis: ["🌿","🍀","🌱","🌸","🌼","🌻","🌳","🌲","🌊","🔥","🌙","☀️"] },
   { label: "Semboller ✨", emojis: ["✨","⭐","🌟","⚡","💫","🔥","💎","🧿","✔️","❗","➜","🎯"] },
+
 ];
 
 function EmojiPicker({ selected, onSelect, T }) {
@@ -1845,6 +1846,8 @@ export default function App() {
   const [heartAnim, setHeartAnim] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
+  const [showPrivacy, setShowPrivacy] = useState(false);
+  const [showTerms, setShowTerms] = useState(false);
   const [confirmReset, setConfirmReset] = useState(false);
   const [notifyEnabled, setNotifyEnabled] = useState(false);
   const [celebration, setCelebration] = useState(null);
@@ -2111,6 +2114,11 @@ export default function App() {
 
               <button onClick={() => setShowSettings(false)} style={BS}>Kaydet ✓</button>
               <button onClick={() => { setShowSettings(false); setTimeout(() => setShowAbout(true), 150); }} style={{ background: "none", border: "none", padding: "10px 0", fontSize: 13, color: T.textMuted, cursor: "pointer", fontFamily: F.body, width: "100%", textAlign: "center" }}>ℹ️ Hakkında</button>
+              <div style={{ display: "flex", gap: 8, justifyContent: "center" }}>
+                <button onClick={() => { setShowSettings(false); setTimeout(() => setShowPrivacy(true), 150); }} style={{ background: "none", border: "none", padding: "6px 0", fontSize: 12, color: T.textMuted, cursor: "pointer", fontFamily: F.body, textDecoration: "underline", opacity: 0.7 }}>Gizlilik Politikası</button>
+                <span style={{ color: T.textMuted, opacity: 0.3, fontSize: 12 }}>|</span>
+                <button onClick={() => { setShowSettings(false); setTimeout(() => setShowTerms(true), 150); }} style={{ background: "none", border: "none", padding: "6px 0", fontSize: 12, color: T.textMuted, cursor: "pointer", fontFamily: F.body, textDecoration: "underline", opacity: 0.7 }}>Kullanım Koşulları</button>
+              </div>
               <button onClick={() => { setShowSettings(false); setTimeout(() => setConfirmReset(true), 150); }} style={{ background: "none", border: `1.5px solid ${T.inputBorder}`, borderRadius: 14, padding: 14, fontSize: 14, color: T.accent, cursor: "pointer", fontFamily: F.body, width: "100%" }}>Kurulumu Sıfırla</button>
             </div>
           </div>
@@ -2153,12 +2161,66 @@ export default function App() {
             <h3 style={{ fontSize: 24, fontWeight: 800, fontFamily: F.heading, color: T.accent, margin: "0 0 4px" }}>MySwan</h3>
             <p style={{ fontSize: 12, color: T.textMuted, margin: "0 0 16px" }}>Versiyon 1.0.0</p>
             <p style={{ fontSize: 14, color: T.textSec, lineHeight: 1.6, margin: "0 0 20px" }}>
-              Sevgilinizle birlikte geçirdiğiniz her anı, her detayı ve her hayali saklamak için tasarlandı. 💕
+              Sevgilinizle birlikte geçirdiğiniz her anı, her detayı ve her hayali saklamak için tasarlandı. 💖
             </p>
             <div style={{ borderTop: `1px solid ${T.inputBorder}`, paddingTop: 16 }}>
               <p style={{ fontSize: 12, color: T.textMuted, margin: "0 0 4px" }}>Tasarım & Geliştirme</p>
               <p style={{ fontSize: 15, fontWeight: 700, fontFamily: F.heading, color: T.accent, margin: 0 }}>Canova Studio</p>
             </div>
+            <div style={{ display: "flex", gap: 12, justifyContent: "center", marginTop: 16 }}>
+              <button onClick={() => { setShowAbout(false); setTimeout(() => setShowPrivacy(true), 150); }} style={{ background: "none", border: "none", fontSize: 12, color: T.accent, cursor: "pointer", fontFamily: F.body, textDecoration: "underline" }}>Gizlilik Politikası</button>
+              <button onClick={() => { setShowAbout(false); setTimeout(() => setShowTerms(true), 150); }} style={{ background: "none", border: "none", fontSize: 12, color: T.accent, cursor: "pointer", fontFamily: F.body, textDecoration: "underline" }}>Kullanım Koşulları</button>
+            </div>
+          </div>
+        </Modal>
+      )}
+
+      {/* Privacy Policy Modal */}
+      {showPrivacy && (
+        <Modal onClose={() => setShowPrivacy(false)} title="Gizlilik Politikası" T={T}>
+          <div style={{ fontSize: 13, color: T.textSec, lineHeight: 1.7, fontFamily: F.body }}>
+            <p style={{ fontWeight: 700, color: T.text, fontSize: 14, margin: "0 0 12px" }}>Son Güncelleme: Mart 2026</p>
+            <p style={{ fontWeight: 700, color: T.text, margin: "16px 0 6px" }}>1. Toplanan Veriler</p>
+            <p style={{ margin: "0 0 8px" }}>MySwan uygulaması, girdiğiniz tüm verileri (isim, tarih, anılar, notlar, fotoğraflar) yalnızca cihazınızın yerel depolama alanında (localStorage) saklar. Verileriniz hiçbir sunucuya gönderilmez.</p>
+            <p style={{ fontWeight: 700, color: T.text, margin: "16px 0 6px" }}>2. Veri Saklama</p>
+            <p style={{ margin: "0 0 8px" }}>Tüm veriler cihazınızda kalır. MySwan herhangi bir bulut sunucusu, veritabanı veya üçüncü taraf hizmeti kullanmaz. Tarayıcı verilerinizi temizlediğinizde uygulama verileri de silinir.</p>
+            <p style={{ fontWeight: 700, color: T.text, margin: "16px 0 6px" }}>3. Üçüncü Taraf Paylaşımı</p>
+            <p style={{ margin: "0 0 8px" }}>Kişisel verileriniz hiçbir üçüncü taraf ile paylaşılmaz, satılmaz veya kiralanmaz. Uygulama reklam içermez ve analitik aracı kullanmaz.</p>
+            <p style={{ fontWeight: 700, color: T.text, margin: "16px 0 6px" }}>4. Fotoğraflar</p>
+            <p style={{ margin: "0 0 8px" }}>Yüklediğiniz fotoğraflar yalnızca cihazınızın tarayıcı belleğinde saklanır. Fotoğraflar herhangi bir sunucuya yüklenmez.</p>
+            <p style={{ fontWeight: 700, color: T.text, margin: "16px 0 6px" }}>5. Bildirimler</p>
+            <p style={{ margin: "0 0 8px" }}>Bildirim izni vermeniz durumunda, yaklaşan özel günler için yerel bildirimler gönderilir. Bu bildirimler cihazınızda oluşturulur, harici bir sunucu üzerinden gönderilmez.</p>
+            <p style={{ fontWeight: 700, color: T.text, margin: "16px 0 6px" }}>6. Veri Silme</p>
+            <p style={{ margin: "0 0 8px" }}>Ayarlar bölümündeki "Kurulumu Sıfırla" seçeneği ile tüm verilerinizi kalıcı olarak silebilirsiniz.</p>
+            <p style={{ fontWeight: 700, color: T.text, margin: "16px 0 6px" }}>7. Çocukların Gizliliği</p>
+            <p style={{ margin: "0 0 8px" }}>MySwan 13 yaşın altındaki çocuklara yönelik değildir ve bu yaş grubundan bilerek veri toplamaz.</p>
+            <p style={{ fontWeight: 700, color: T.text, margin: "16px 0 6px" }}>8. İletişim</p>
+            <p style={{ margin: 0 }}>Sorularınız için: canovastudioo@gmail.com</p>
+          </div>
+        </Modal>
+      )}
+
+      {/* Terms of Use Modal */}
+      {showTerms && (
+        <Modal onClose={() => setShowTerms(false)} title="Kullanım Koşulları" T={T}>
+          <div style={{ fontSize: 13, color: T.textSec, lineHeight: 1.7, fontFamily: F.body }}>
+            <p style={{ fontWeight: 700, color: T.text, fontSize: 14, margin: "0 0 12px" }}>Son Güncelleme: Mart 2026</p>
+            <p style={{ fontWeight: 700, color: T.text, margin: "16px 0 6px" }}>1. Kabul</p>
+            <p style={{ margin: "0 0 8px" }}>MySwan uygulamasını kullanarak bu kullanım koşullarını kabul etmiş sayılırsınız.</p>
+            <p style={{ fontWeight: 700, color: T.text, margin: "16px 0 6px" }}>2. Hizmet Tanımı</p>
+            <p style={{ margin: "0 0 8px" }}>MySwan, çiftlerin birlikte geçirdikleri zamanı takip etmelerine, anılarını kaydetmelerine ve özel günlerini yönetmelerine olanak tanıyan ücretsiz bir web uygulamasıdır.</p>
+            <p style={{ fontWeight: 700, color: T.text, margin: "16px 0 6px" }}>3. Kullanım Kuralları</p>
+            <p style={{ margin: "0 0 8px" }}>Uygulamayı yasal amaçlarla ve bu koşullara uygun şekilde kullanmayı kabul edersiniz. Uygulamayı kötüye kullanmak, tersine mühendislik yapmak veya kaynak kodunu izinsiz kopyalamak yasaktır.</p>
+            <p style={{ fontWeight: 700, color: T.text, margin: "16px 0 6px" }}>4. Veri Sorumluluğu</p>
+            <p style={{ margin: "0 0 8px" }}>Tüm veriler cihazınızda saklandığından, veri yedekleme ve güvenliği sizin sorumluluğunuzdadır. Tarayıcı verilerinin silinmesi durumunda MySwan verilerin kurtarılmasından sorumlu değildir.</p>
+            <p style={{ fontWeight: 700, color: T.text, margin: "16px 0 6px" }}>5. Fikri Mülkiyet</p>
+            <p style={{ margin: "0 0 8px" }}>MySwan uygulamasının tasarımı, kodu, logosu ve içeriği Canova Studio'ya aittir. Tüm hakları saklıdır.</p>
+            <p style={{ fontWeight: 700, color: T.text, margin: "16px 0 6px" }}>6. Sorumluluk Sınırlaması</p>
+            <p style={{ margin: "0 0 8px" }}>MySwan "olduğu gibi" sunulmaktadır. Canova Studio, uygulamanın kesintisiz veya hatasız çalışacağını garanti etmez. Veri kaybı veya uygulama kullanımından doğabilecek zararlardan sorumlu tutulamaz.</p>
+            <p style={{ fontWeight: 700, color: T.text, margin: "16px 0 6px" }}>7. Değişiklikler</p>
+            <p style={{ margin: "0 0 8px" }}>Bu koşullar önceden bildirimde bulunulmaksızın güncellenebilir. Güncel koşullar uygulama içinden erişilebilir.</p>
+            <p style={{ fontWeight: 700, color: T.text, margin: "16px 0 6px" }}>8. İletişim</p>
+            <p style={{ margin: 0 }}>Sorularınız için: canovastudioo@gmail.com</p>
           </div>
         </Modal>
       )}
