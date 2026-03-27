@@ -1701,7 +1701,7 @@ function SplashScreen({ onDone }) {
         color: "#c06080", letterSpacing: "0.5px",
         animation: phase >= 1 ? "splashTextIn 0.6s ease-out 0.5s both" : "none",
         opacity: 0
-      }}>Sevginizi dijitale taşıyın</p>
+      }}>Aşkın en teknolojik, en içten hali.</p>
 
       {/* Loading dots */}
       <div style={{
