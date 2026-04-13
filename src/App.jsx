@@ -1870,7 +1870,7 @@ export default function App() {
       if (d.startDate) setStartDate(d.startDate);
       if (d.partner) setPartner(d.partner);
       if (d.events) setEvents(d.events);
-      if (d.memories) setMemories(d.memories);
+      if (d.memories) setMemories(d.memories.map(m => ({ ...m, image: m.image === "(saved)" ? null : m.image })));
       if (d.bucketList) setBucketList(d.bucketList);
       if (d.gifts) setGifts(d.gifts);
       if (d.plans) setPlans(d.plans);
@@ -1882,14 +1882,46 @@ export default function App() {
     setDataLoaded(true);
   }, []);
 
+  // Compress image to max ~200KB for localStorage
+  const compressImage = (dataUrl, maxW = 800, quality = 0.6) => {
+    return new Promise((resolve) => {
+      if (!dataUrl || dataUrl === "(saved)") { resolve(null); return; }
+      const img = new window.Image();
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        let w = img.width, h = img.height;
+        if (w > maxW) { h = (maxW / w) * h; w = maxW; }
+        canvas.width = w; canvas.height = h;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, w, h);
+        resolve(canvas.toDataURL("image/jpeg", quality));
+      };
+      img.onerror = () => resolve(null);
+      img.src = dataUrl;
+    });
+  };
+
   // Auto-save when data changes
   useEffect(() => {
     if (!dataLoaded) return;
-    saveData({
-      setupDone, partnerName, startDate, partner, events,
-      memories: memories.map(m => ({ ...m, image: m.image ? "(saved)" : null })),
-      bucketList, gifts, plans, dark, paletteId, fontId
-    });
+    const doSave = async () => {
+      const compressedMemories = await Promise.all(
+        memories.map(async (m) => {
+          if (!m.image || m.image === "(saved)") return { ...m, image: null };
+          if (m.image.startsWith("data:image/jpeg") && m.image.length < 400000) {
+            return { ...m };
+          }
+          const compressed = await compressImage(m.image);
+          return { ...m, image: compressed };
+        })
+      );
+      saveData({
+        setupDone, partnerName, startDate, partner, events,
+        memories: compressedMemories,
+        bucketList, gifts, plans, dark, paletteId, fontId
+      });
+    };
+    doSave();
   }, [dataLoaded, setupDone, partnerName, startDate, partner, events, memories, bucketList, gifts, plans, dark, paletteId, fontId]);
 
   useEffect(() => { const t = setInterval(() => setHeartAnim(h => !h), 1200); return () => clearInterval(t); }, []);
