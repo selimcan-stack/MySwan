@@ -203,7 +203,7 @@ function CustomDatePicker({ value, onChange, T }) {
             background: T.card, borderRadius: "28px 28px 0 0", width: "100%", maxWidth: 430,
             boxShadow: `0 -12px 48px rgba(0,0,0,0.15)`,
             animation: "dateSheetUp 0.3s cubic-bezier(0.22, 1, 0.36, 1)",
-            paddingBottom: 100, maxHeight: "90vh", overflowY: "auto", WebkitOverflowScrolling: "touch"
+            paddingBottom: 130, maxHeight: "110vh", overflowY: "auto", WebkitOverflowScrolling: "touch"
           }} onClick={e => e.stopPropagation()}>
             <style>{`@keyframes dateSheetUp{from{transform:translateX(-50%) translateY(100%)}to{transform:translateX(-50%) translateY(0)}}`}</style>
 
